@@ -115,7 +115,7 @@ li:hover {
 	flex: 1
 }
 #introduction h2 {
-	margin-bottom: 1em;
+	margin-bottom: 3em;
 }
 
 #introduction p {
@@ -129,7 +129,31 @@ li:hover {
 	width: 100%;
 	display: flex;
 	justify-content: center;
-
+	height: 37px;
+	margin-bottom: 3em;
+}
+.btn-tous, .btn-objets, .btn-appartements, .btn-hotel-restaurant {
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	background-color: white;
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 16px;
+	color: #1D6154;	
+	margin-left: 10px;	
+}
+.btn-tous, .btn-objets{
+	width: 100px;
+}
+.btn-appartements{
+	width: 157px;
+}
+.btn-hotel-restaurant{
+	width: 198px;
+}
+.style:hover{
+	background-color: #1D6154;
+	color: white;
 }
 .gallery {
 	width: 100%;
