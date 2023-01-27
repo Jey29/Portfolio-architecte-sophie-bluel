@@ -39,7 +39,9 @@ function genererProjets(projets) {
 function supprimerListe() {
   document.querySelector(".gallery").innerHTML = "";
 }
-//////////////////les filtres////////////////////
+
+//////////////////////////les filtres//////////////////////////
+
 const boutonTous = document.querySelector(".btn-tous");
 boutonTous.addEventListener("click", function () {
   supprimerListe();
@@ -72,3 +74,58 @@ boutonHotelRestaurants.addEventListener("click", function () {
   supprimerListe();
   genererProjets(hotelRestaurantsFiltrees);
 });
+
+/////////////////Authentification de l'utilisateur///////////////////////
+
+// Récupération des éléments du formulaire
+const form = document.getElementById("login-form");
+const emailInput = document.getElementById("email-input");
+const passwordInput = document.getElementById("password-input");
+const errorMessage = document.getElementById("error-message");
+
+// Définition des informations email/mot de passe correctes
+const correctEmail = "sophie.bluel@test.tld";
+const correctPassword = "S0phie";
+
+// Gestion de la soumission du formulaire
+form.addEventListener("submit", handleFormSubmit);
+emailInput.addEventListener("keydown", handleEnterKey);
+passwordInput.addEventListener("keydown", handleEnterKey);
+
+function handleFormSubmit(event) {
+  event.preventDefault();
+
+  // Récupération des valeurs saisies dans les champs
+  const email = emailInput.value;
+  const password = passwordInput.value;
+
+  // Vérification des informations utilisateur/mot de passe
+  if (email === correctEmail && password === correctPassword) {
+    // Envoi de la requête POST à l'API
+    fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(correctEmail, correctPassword),
+    })
+      .then((response) => {
+        if (response.ok) {
+          window.location.href = "index.html";
+        } else {
+          errorMessage.textContent = "La connexion a échoué";
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        errorMessage.textContent = "La connexion a échoué";
+      });
+  } else {
+    errorMessage.textContent =
+      "Informations utilisateur/mot de passe incorrectes";
+  }
+}
+
+function handleEnterKey(event) {
+  if (event.key === "Enter") {
+    handleFormSubmit(event);
+  }
+}
