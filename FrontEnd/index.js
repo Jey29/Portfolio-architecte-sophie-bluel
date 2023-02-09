@@ -42,90 +42,44 @@ function supprimerListe() {
 
 //////////////////////////les filtres//////////////////////////
 
-const boutonTous = document.querySelector(".btn-tous");
+const divFilters = document.querySelector("#filters");
+
+const boutonTous = document.createElement("button");
+boutonTous.innerHTML = "Tous";
+boutonTous.id = "filters";
+boutonTous.classList.add("bouton-style");
+divFilters.appendChild(boutonTous);
+
 boutonTous.addEventListener("click", function () {
   supprimerListe();
   genererProjets(projets);
 });
 
-const boutonObjets = document.querySelector(".btn-objets");
-boutonObjets.addEventListener("click", function () {
-  const objetsFiltrees = projets.filter(function (article) {
-    return article.category.name === "Objets";
-  });
-  supprimerListe();
-  genererProjets(objetsFiltrees);
-});
+fetch("http://localhost:5678/api/categories")
+  .then((response) => {
+    return response.json();
+  })
+  .then((categories) => {
+    categories.forEach((category) => {
+      const bouton = document.createElement("bouton");
+      bouton.classList.add("bouton-style");
+      bouton.textContent = category.name;
 
-const boutonAppartements = document.querySelector(".btn-appartements");
-boutonAppartements.addEventListener("click", function () {
-  const appartementsFiltrees = projets.filter(function (article) {
-    return article.category.name === "Appartements";
-  });
-  supprimerListe();
-  genererProjets(appartementsFiltrees);
-});
-
-const boutonHotelRestaurants = document.querySelector(".btn-hotel-restaurant");
-boutonHotelRestaurants.addEventListener("click", function () {
-  const hotelRestaurantsFiltrees = projets.filter(function (article) {
-    return article.category.name === "Hotels & restaurants";
-  });
-  supprimerListe();
-  genererProjets(hotelRestaurantsFiltrees);
-});
-
-/////////////////Authentification de l'utilisateur///////////////////////
-
-// Récupération des éléments du formulaire
-const form = document.getElementById("login-form");
-const emailInput = document.getElementById("email-input");
-const passwordInput = document.getElementById("password-input");
-const errorMessage = document.getElementById("error-message");
-
-// Définition des informations email/mot de passe correctes
-const correctEmail = "sophie.bluel@test.tld";
-const correctPassword = "S0phie";
-
-// Gestion de la soumission du formulaire
-form.addEventListener("submit", handleFormSubmit);
-emailInput.addEventListener("keydown", handleEnterKey);
-passwordInput.addEventListener("keydown", handleEnterKey);
-
-function handleFormSubmit(event) {
-  event.preventDefault();
-
-  // Récupération des valeurs saisies dans les champs
-  const email = emailInput.value;
-  const password = passwordInput.value;
-
-  // Vérification des informations utilisateur/mot de passe
-  if (email === correctEmail && password === correctPassword) {
-    // Envoi de la requête POST à l'API
-    fetch("http://localhost:5678/api/works", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(correctEmail, correctPassword),
-    })
-      .then((response) => {
-        if (response.ok) {
-          window.location.href = "index.html";
-        } else {
-          errorMessage.textContent = "La connexion a échoué";
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        errorMessage.textContent = "La connexion a échoué";
+      bouton.addEventListener("click", function () {
+        const filteredProjects = projets.filter(function (projet) {
+          return projet.category.name === category.name;
+        });
+        supprimerListe();
+        genererProjets(filteredProjects);
       });
-  } else {
-    errorMessage.textContent =
-      "Informations utilisateur/mot de passe incorrectes";
-  }
-}
+      divFilters.appendChild(bouton);
+    });
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
 
-function handleEnterKey(event) {
-  if (event.key === "Enter") {
-    handleFormSubmit(event);
-  }
-}
+// recuperer session dans le localStorage, valeur id + token ok
+// Sur la page principale afficher les éléments supplémentaires quand la connexion est établie
+// clic modifier: ouverture modale
+// Dans cette tache : lorsque je creer rajouter dans mes en-tête

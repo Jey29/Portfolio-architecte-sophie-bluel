@@ -129,24 +129,24 @@ a {
 	text-align: center;
 	margin-bottom: 1em;
 }
-.btn-filtres {	
+#contener_filters {	
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	height: 37px;
 	margin-bottom: 3em;
 }
-.btn-tous, .btn-objets, .btn-appartements, .btn-hotel-restaurant {
+.bouton-style {
 	border: 1px solid #1D6154;
 	border-radius: 60px;
 	background-color: white;
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 16px;
-	color: #1D6154;	
-	margin-left: 10px;	
-}
-.btn-tous, .btn-objets{
+	color: #1D6154;
+	margin-left: 10px;
+  }
+/* .btn-tous, .btn-objets{
 	width: 100px;
 }
 .btn-appartements{
@@ -154,8 +154,8 @@ a {
 }
 .btn-hotel-restaurant{
 	width: 198px;
-}
-.style:hover{
+} */
+.bouton-style:hover{
 	background-color: #1D6154;
 	color: white;
 }
