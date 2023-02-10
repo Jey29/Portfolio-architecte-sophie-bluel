@@ -10,11 +10,18 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
+    <script src="https://kit.fontawesome.com/d6b1f52882.js" crossorigin="anonymous"
+    ></script>
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
-    <header>
+    <div id="nav_modify">
+      
+      <a id="mode_edition" href="#"><i class="fa-light fa-pen-to-square"></i> Mode édition</a>
+      <button id="buttontop" >publier les changements</button>
+    </div>
+    <header>      
       <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
       <nav>
         <ul>
@@ -52,7 +59,9 @@
       <section id="portfolio">
         <div class="title-portfolio">
           <h2>Mes Projets</h2>
-          <!-- <a class="modify hidden" href="#"><img src="assets/icons/modify.png" alt="Modifier"> modifier</a> -->
+          <div>            
+            <a id="modify" href="#modal1"><i class="fa-light fa-pen-to-square"></i> Modifier</a>
+          </div>          
         </div> 
         <div id="contener_filters">
           <div id="filters"></div>                   

@@ -62,6 +62,7 @@ fetch("http://localhost:5678/api/categories")
   .then((categories) => {
     categories.forEach((category) => {
       const bouton = document.createElement("bouton");
+      //donner le style aux boutons créés
       bouton.classList.add("bouton-style");
       bouton.textContent = category.name;
 
@@ -79,7 +80,29 @@ fetch("http://localhost:5678/api/categories")
     console.error("Error:", error);
   });
 
+/////////////////////////////affichage session conneté///////////////////
+// Fonction pour démarrer une session
+function startSession() {
+  sessionStorage.setItem("isConnected", true);
+}
+
+// Fonction pour vérifier le statut de la session
+function checkSession() {
+  var element = document.getElementById("nav_modify");
+  if (sessionStorage.getItem("isConnected") === "true") {
+    // Utilisateur connecté, afficher l'élément
+    element.style.display = "block";
+  } else {
+    // Utilisateur non connecté, cacher l'élément
+    element.style.display = "none";
+  }
+}
+
+// Vérifier le statut de la session lors du chargement de la page
+window.addEventListener("load", function () {
+  checkSession();
+});
+
 // recuperer session dans le localStorage, valeur id + token ok
 // Sur la page principale afficher les éléments supplémentaires quand la connexion est établie
 // clic modifier: ouverture modale
-// Dans cette tache : lorsque je creer rajouter dans mes en-tête

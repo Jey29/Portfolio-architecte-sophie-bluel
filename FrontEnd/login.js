@@ -32,6 +32,8 @@ function handleFormSubmit(event) {
         response.json().then((session) => {
           //enregistrement de session dans le localStorage
           localStorage.setItem("session", JSON.stringify(session));
+          // Enregistrement du statut de connexion dans une session
+          startSession();
           window.location.href = "index.html";
         });
       } else {
@@ -49,3 +51,21 @@ function handleEnterKey(event) {
     handleFormSubmit(event);
   }
 }
+// Fonction pour démarrer une session
+function startSession() {
+  sessionStorage.setItem("isConnected", true);
+}
+// Fonction pour vérifier le statut de la session
+function checkSession() {
+  if (sessionStorage.getItem("isConnected") === "true") {
+    // Utilisateur connecté, afficher le bouton "modifier"
+    document.getElementById("modifyButton").style.display = "block";
+  } else {
+    // Utilisateur non connecté, cacher le bouton "modifier"
+    document.getElementById("modifyButton").style.display = "none";
+  }
+}
+// Vérifier le statut de la session lors du chargement de la page
+window.addEventListener("load", function () {
+  checkSession();
+});
