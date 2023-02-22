@@ -1,44 +1,57 @@
 let projets;
-// Récupération du projet depuis le fichier JSON
+
 fetch("http://localhost:5678/api/works")
   .then((response) => response.json())
   .then((data) => {
     projets = data;
-    genererProjets(projets);
+    genererProjetsGallery(projets);
+    genererProjetsGalleryModal(projets);
   })
   .catch((error) => console.error(error));
 
-// let article;
-// Fonction qui génère toute la page web
-function genererProjets(projets) {
-  // Récupération de l'élément du DOM qui accueillera la gallery
+function genererProjetsGallery(projets) {
   const sectionGallery = document.querySelector(".gallery");
   for (let i = 0; i < projets.length; i++) {
-    var article = projets[i];
-    // Création d’une balise dédiée à un projet
     const projetElement = document.createElement("figure");
-    // On crée l’élément img.
     const imageElement = document.createElement("img");
     imageElement.src = projets[i].imageUrl;
     imageElement.crossOrigin = "anonymous";
-    // const corsImageModified = new Image();
-    // corsImageModified.crossOrigin = "Anonymous";
-    // corsImageModified.src = projets[i].imageUrl + "?not-from-cache-please";
-    // imageElement.src = "assets/images/abajour-tahina.png";
-    // on créé l'élément title.
+
     const titleElement = document.createElement("figcaption");
-    titleElement.innerText = article.title;
+    titleElement.innerText = projets[i].title;
 
     projetElement.appendChild(imageElement);
     projetElement.appendChild(titleElement);
 
-    // On rattache la balise article au body
     sectionGallery.appendChild(projetElement);
   }
 }
+
+function genererProjetsGalleryModal(projets) {
+  const sectionModal = document.querySelector(".gallery-modal");
+  for (let i = 0; i < projets.length; i++) {
+    const projetElement = document.createElement("figure");
+    const imageElement = document.createElement("img");
+    imageElement.src = projets[i].imageUrl;
+    imageElement.crossOrigin = "anonymous";
+
+    projetElement.appendChild(imageElement);
+
+    sectionModal.appendChild(projetElement);
+  }
+}
+
 function supprimerListe() {
   document.querySelector(".gallery").innerHTML = "";
+  document.querySelector(".gallery-modal").innerHTML = "";
 }
+
+fetch("http://localhost:5678/api/works")
+  .then((response) => response.json())
+  .then((data) => {
+    genererProjets(data);
+  })
+  .catch((error) => console.error(error));
 
 //////////////////////////les filtres//////////////////////////
 
@@ -80,7 +93,7 @@ fetch("http://localhost:5678/api/categories")
     console.error("Error:", error);
   });
 
-/////////////////////////////affichage session conneté///////////////////
+/////////////////////////////affichage session connectée///////////////////
 // Fonction pour démarrer une session
 function startSession() {
   sessionStorage.setItem("isConnected", true);
@@ -88,13 +101,16 @@ function startSession() {
 
 // Fonction pour vérifier le statut de la session
 function checkSession() {
-  var element = document.getElementById("nav_modify");
+  const element = document.getElementById("nav_modify");
+  const element1 = document.getElementById("modify");
   if (sessionStorage.getItem("isConnected") === "true") {
     // Utilisateur connecté, afficher l'élément
     element.style.display = "block";
+    element1.style.display = "block";
   } else {
     // Utilisateur non connecté, cacher l'élément
     element.style.display = "none";
+    element1.style.display = "none";
   }
 }
 
@@ -102,7 +118,3 @@ function checkSession() {
 window.addEventListener("load", function () {
   checkSession();
 });
-
-// recuperer session dans le localStorage, valeur id + token ok
-// Sur la page principale afficher les éléments supplémentaires quand la connexion est établie
-// clic modifier: ouverture modale

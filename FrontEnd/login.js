@@ -51,21 +51,21 @@ function handleEnterKey(event) {
     handleFormSubmit(event);
   }
 }
-// Fonction pour démarrer une session
+// // Fonction pour démarrer une session
 function startSession() {
   sessionStorage.setItem("isConnected", true);
 }
-// Fonction pour vérifier le statut de la session
-function checkSession() {
-  if (sessionStorage.getItem("isConnected") === "true") {
-    // Utilisateur connecté, afficher le bouton "modifier"
-    document.getElementById("modifyButton").style.display = "block";
-  } else {
-    // Utilisateur non connecté, cacher le bouton "modifier"
-    document.getElementById("modifyButton").style.display = "none";
-  }
-}
-// Vérifier le statut de la session lors du chargement de la page
-window.addEventListener("load", function () {
-  checkSession();
-});
+// // Fonction pour vérifier le statut de la session
+// function checkSession() {
+//   if (sessionStorage.getItem("isConnected") === "true") {
+//     // Utilisateur connecté, afficher le bouton "modifier"
+//     document.getElementById("modifyButton").style.display = "block";
+//   } else {
+//     // Utilisateur non connecté, cacher le bouton "modifier"
+//     document.getElementById("modifyButton").style.display = "none";
+//   }
+// }
+// // Vérifier le statut de la session lors du chargement de la page
+// window.addEventListener("load", function () {
+//   checkSession();
+// });
