@@ -21,11 +21,10 @@
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
-    <div id="nav_modify" style="display: none">
-      <a id="mode_edition" href="#"
-        ><i class="fa-regular fa-pen-to-square"></i><span>Mode édition</span></a
-      >
-      <button id="buttontop">publier les changements</button>
+    <div class="editMode" id="adminMode">
+      <i class="fa-regular fa-pen-to-square"></i>
+      <p>Mode édition</p>
+      <button type="button">publier les changements</button>
     </div>
     <header>
       <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
@@ -42,8 +41,16 @@
       <section id="introduction">
         <figure>
           <img src="./assets/images/sophie-bluel.png" alt="" />
+          <div class="modif" id="adminMode">
+            <i class="fa-regular fa-pen-to-square"></i>
+            <p>Modifier</p>
+          </div>
         </figure>
         <article>
+          <div class="modif" id="adminMode">
+            <i class="fa-regular fa-pen-to-square"></i>
+            <p>Modifier</p>
+          </div>
           <h2>Designer d'espace</h2>
           <p>
             Je raconte votre histoire, je valorise vos idées. Je vous accompagne
@@ -64,13 +71,13 @@
       </section>
       <section id="portfolio">
         <div class="title-portfolio">
-          <h2>Mes Projets</h2>
-          <div>
-            <a id="modify" href="#modal1" role="button" style="display: none"
-              ><i class="fa-regular fa-pen-to-square"></i>
-              <span>Modifier</span></a
-            >
-          </div>
+          <h2>
+            Mes Projets
+            <button class="modifButton modaleShow" id="adminMode">
+              <i class="fa-regular fa-pen-to-square"></i>
+              <p>Modifier</p>
+            </button>
+          </h2>
           <aside
             id="modal1"
             class="js-modal"

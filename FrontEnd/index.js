@@ -135,27 +135,27 @@ fetch("http://localhost:5678/api/categories")
   });
 
 /////////////////////////////affichage session connectée///////////////////
-// Fonction pour démarrer une session
-function startSession() {
-  sessionStorage.setItem("isConnected", true);
-}
+// // Fonction pour démarrer une session
+// function startSession() {
+//   sessionStorage.setItem("isConnected", true);
+// }
 
-// Fonction pour vérifier le statut de la session
-function checkSession() {
-  const element = document.getElementById("nav_modify");
-  const element1 = document.getElementById("modify");
-  if (sessionStorage.getItem("isConnected") === "true") {
-    // Utilisateur connecté, afficher l'élément
-    element.style.display = "block";
-    element1.style.display = "block";
-  } else {
-    // Utilisateur non connecté, cacher l'élément
-    element.style.display = "none";
-    element1.style.display = "none";
-  }
-}
+// // Fonction pour vérifier le statut de la session
+// function checkSession() {
+//   const element = document.getElementById("nav_modify");
+//   const element1 = document.getElementById("modify");
+//   if (sessionStorage.getItem("isConnected") === "true") {
+//     // Utilisateur connecté, afficher l'élément
+//     element.style.display = "block";
+//     element1.style.display = "block";
+//   } else {
+//     // Utilisateur non connecté, cacher l'élément
+//     element.style.display = "none";
+//     element1.style.display = "none";
+//   }
+// }
 
-// Vérifier le statut de la session lors du chargement de la page
-window.addEventListener("load", function () {
-  checkSession();
-});
+// // Vérifier le statut de la session lors du chargement de la page
+// window.addEventListener("load", function () {
+//   checkSession();
+// });

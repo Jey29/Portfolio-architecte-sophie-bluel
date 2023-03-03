@@ -2,7 +2,7 @@
 const modal = document.getElementById("modal1");
 
 // Récupération du bouton "Modifier"
-const modifyBtn = document.getElementById("modify");
+const modifyBtn = document.getElementById("modifButton");
 
 // Récupération du bouton de fermeture de la modal
 const closeModalBtn = document.querySelector(".js-modal-close");
