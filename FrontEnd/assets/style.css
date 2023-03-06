@@ -116,12 +116,10 @@ li:hover , a:hover{
 #introduction article {
 	flex: 1
 }
-#introduction h2 {
-	margin-bottom: 3em;
-}
 
 #introduction p {
 	margin-bottom: 0.5em;
+	width: 70%;
 }
 #portfolio h2 {
 	text-align: center;
@@ -202,27 +200,21 @@ h3{
 	line-height: 30px;
 	text-align: center;
 	margin-left: auto;
-	margin-right: auto;
-	margin-top: 60px;
+	margin-right: auto;	
 }
 a {
 	text-decoration: none;
 	color: black;
 }
-span{
-	margin-left: 8px;
-}
+
+/* ///////////////// Filtres ////////////////////// */
+
 #contener_filters {	
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	height: 37px;
 	margin-bottom: 3em;
-}
-#buttontop{
-	width: 216px;
-	height: 38px;
-	border-radius: 60px;
 }
 .bouton-style {
 	border: 1px solid #1D6154;
@@ -240,76 +232,8 @@ span{
 	background-color: #1D6154;
 	color: white;
 }
-.bouton-ajout{
-	border: 1px solid #1D6154;
-	border-radius: 60px;
-	background: #1D6154;
-	color: white;
-	font-family: 'Syne';
-	font-size: 14px;
-	font-weight: 700;
-	line-height: 17px;
-	text-align: center;
-	width: 237px;
-	height:36px;
-}
-.title-portfolio{
-	display: flex;
-	align-items: flex-start;
-	justify-content: center;
-}
-.js-modal {
-	position: fixed;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background:rgba(0, 0, 0, 0.3);
-}
-.modal-wrapper{	
-	width: 630px;
-	max-width: 55vw;	
-	height: 731px;
-	background-color: #fff;
-	border-radius: 10px;
-	position: relative;	
-}
-.close{
-	position: absolute;
-	right:36px;
-	top: 32px;
-}
-.contenant-modal{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-.gallery-modal{
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;	
-	margin-top: 46px;
-	margin-right: 105px;
-	margin-left: 105px;
-	margin-bottom: 36px;
-	overflow: auto;
-	max-height: 45vh;
-	padding-bottom: 47px;
-	border-bottom: 1px solid #B3B3B3 ;
-}
-.gallery-modal img{
-	width: 79px;
-	height: 105px;
-	object-fit: cover;
-}
-/*////////////////////////////////////////////////////////////////////////////*/
-/*EditMode*/
+
+/*////////////////////////////EditMode//////////////////////////////////////*/
 #adminMode{
 	display: none;
 }
@@ -361,4 +285,217 @@ span{
 	gap: 10px;
 	border: none;
 	background-color: white;
+}
+/* //////////////////////////MODALES////////////////////// */
+#modal1{
+	display: none;
+}
+.modale {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;	
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background:rgba(0, 0, 0, 0.3);
+}
+.modal-wrapper{	
+	display: flex;
+	align-items: center;
+    justify-content: center;
+    flex-direction: column;
+	background-color: white;
+	width: 45%;
+	height: 80%;
+	border-radius: 10px;
+	gap: 10px;	
+}
+.gallery-modal{
+	width: 70%;
+	height: 70%;
+	border-bottom: 1px solid #B3B3B3;
+	display: flex;
+	flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+	justify-content: space-between;
+	align-content: center;
+}
+.fa-xmark{
+	margin-left: 90%;
+}
+.gallery-modal img{
+	width: 100%;
+	height: 12vh;
+	object-fit: cover;
+}
+.bouton-ajout{
+	font-family: 'Syne';
+	width: 35%;
+	height: 5%;
+	background-color: #1D6154;
+	border: none;
+	border-radius: 25px;
+	color: white;
+}
+.supprGallery{
+	width: 40%;
+	color: #D65353;
+	border: none;
+	font-family: 'Syne';
+	font-weight: 400;
+	font-size: 8px;
+	line-height: 16px;
+	background-color: white;
+}
+.modale p{
+	font-size: 26px;
+}
+.containerImg {
+	position: relative;
+	display: inline-block;
+}
+
+.containerImg i {
+	color: white;
+}
+.containerIconTrash{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 15px;
+	height: 15px;
+	background-color: black;
+	position: absolute;
+	border-radius: 2px;
+	top: 5%;
+	left: 70%;
+}
+.containerIconCross{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 15px;
+	height: 15px;
+	background-color: black;
+	position: absolute;
+	border-radius: 2px;
+	top: 5%;
+	left: 42%;
+}
+
+
+#modal2{
+	display: none;
+}
+.modaleAjout{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #0000004D ;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.ajouttilte{
+	font-size: 26px;
+}
+.icones{
+	display: flex;
+    align-items: center;
+    width: 90%;
+    height: 10%;
+    justify-content: space-between;
+}
+.blocAjout{
+	width: 100%;
+	height: 40%;
+	background-color: #E8F1F6;
+	display: flex;
+	align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.blocAjout button{
+	background-color: #CBD6DC;
+	border: none;
+	width: 35%;
+	height: 15%;
+	border-radius: 25px;
+	font-family: 'Work Sans';
+	font-size: 14px;
+	color: #306685 ;
+	font-weight: 500;
+}
+.conditions{
+	font-size: 12px;
+	height: 20%;
+}
+.modal-wrapper-ajout{
+	display: flex;
+	align-items: center;
+    flex-direction: column;
+	background-color: white;
+	width: 45%;
+	height: 80%;
+	border-radius: 10px;
+}
+.fa-image{
+	color: #B9C5CC;
+}
+.ajouttitle{
+	font-size: 26px;
+	height: 10%;
+}
+.modale-contenu{
+	display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 75%;
+	height: 75%;
+	border-bottom: 1px solid #B3B3B3;
+}
+.modale-contenu form input{
+	width: 100%;
+	height: 25%;
+	border: none;
+	outline: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.modale-box-ajout form select{
+	width: 100%;
+	height: 25%;
+	border: none;
+	appearance: none;
+	font-family: 'Work Sans';
+	outline: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.modale-contenu form{
+	height: 40%;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-evenly;
+	color: #3D3D3D;
+	font-family: 'Work Sans';
+	font-size: 16px;
+	font-weight: 500;
+}
+.btn-valider{
+	background-color: #A7A7A7;
+	border: none;
+	border-radius: 60px;
+	width: 35%;
+    height: 5%;
+	margin-top: 23px;
+	font-family: 'Syne';
+	color: white;
+	font-size: 14px;
 }

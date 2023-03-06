@@ -1,66 +1,55 @@
-// Récupération de la modal
-const modal = document.getElementById("modal1");
+//ouverture de la modale
+const openModale = document.querySelector(".modifButton");
 
-// Récupération du bouton "Modifier"
-const modifyBtn = document.getElementById("modifButton");
-
-// Récupération du bouton de fermeture de la modal
-const closeModalBtn = document.querySelector(".js-modal-close");
-
-// Fonction générique pour ouvrir une modal
-const openModal = (modalEl) => {
-  modalEl.style.display = null;
-  modalEl.removeAttribute("aria-hidden");
-  modalEl.setAttribute("aria-modal", "true");
-  closeModalBtn.addEventListener("click", closeModal);
-  window.addEventListener("keydown", onKeyDown);
+openModale.addEventListener("click", function (event) {
+  event.preventDefault();
+  const modaleModeElements = document.querySelectorAll("#modal1");
+  modaleModeElements.forEach((element) => {
+    element.style.display = "flex";
+  });
+});
+//fermeture de la modale par la croix
+const closeModale = document.querySelector(".fa-xmark");
+closeModale.addEventListener("click", function (event) {
+  event.preventDefault();
+  const modaleCloseElements = document.querySelectorAll("#modal1", "#modal2");
+  modaleCloseElements.forEach((element) => {
+    element.style.display = "none";
+  });
+});
+// Fermeture des modales par clic en dehors
+const modalElements = document.querySelectorAll(".modale");
+modalElements.forEach((modalElement) => {
+  modalElement.addEventListener("click", function (event) {
+    if (event.target === modalElement) {
+      modalElement.style.display = "none";
+    }
+  });
+});
+//Fonction pour faire en sorte que le clic sur le modal ne le ferme pas
+const stopPropagation = function (event) {
+  event.stopPropagation();
 };
 
-// Fonction générique pour fermer une modal
-const closeModal = (modalEl) => {
-  modalEl.style.display = "none";
-  modalEl.setAttribute("aria-hidden", "true");
-  modalEl.removeAttribute("aria-modal");
-  closeModalBtn.removeEventListener("click", closeModal);
-  window.removeEventListener("keydown", onKeyDown);
-  window.removeEventListener("click", onClickOutside);
-};
-
-// Fonction pour gérer l'événement de touche appuyée
-const onKeyDown = (event) => {
-  if (event.key === "Escape") {
-    closeModal(modal);
-    closeModal(newModal);
-  }
-};
-
-// Fonction pour gérer l'événement de clic à l'extérieur de la modal
-const onClickOutside = (event) => {
-  if (!modal.contains(event.target)) {
-    closeModal(modal);
-    closeModal(newModal);
-  }
-};
-
-// Ajout d'un écouteur d'événement de clic sur le bouton "Modifier"
-modifyBtn.addEventListener("click", () => {
-  openModal(modal);
+// Fonction pour retourner sur modal1
+const icon = document.querySelector(".fa-arrow-left");
+icon.addEventListener("click", function () {
+  const modal1 = document.querySelector("#modal1");
+  const modal2 = document.querySelector("#modal2");
+  modal2.style.display = "none";
+  modal1.style.display = "flex";
 });
 
-// Récupération du bouton d'ajout et de la page modale actuelle
-const addButton = document.querySelector(".bouton-ajout");
+// Bouton Ajout photo, ouverture modale 2
+document.querySelector(".bouton-ajout").addEventListener("click", function () {
+  const modaleModeElements = document.querySelectorAll("#modal2");
+  modaleModeElements.forEach((element) => {
+    element.style.display = "flex";
+  });
 
-// Récupération de la nouvelle page modale
-const newModal = document.querySelector("#modal2");
-
-// Fonction qui sera appelée lorsque le bouton sera cliqué
-function switchModal() {
-  // Masquer la page modale actuelle
-  closeModal(modal);
-
-  // Afficher la nouvelle page modale
-  openModal(newModal);
-}
-
-// Ajout de l'événement de clic au bouton
-addButton.addEventListener("click", switchModal);
+  // Fermeture de la modale 1
+  const modaleCloseElements = document.querySelectorAll("#modal1");
+  modaleCloseElements.forEach((element) => {
+    element.style.display = "none";
+  });
+});
