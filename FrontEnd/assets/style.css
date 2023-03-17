@@ -121,9 +121,16 @@ li:hover , a:hover{
 	margin-bottom: 0.5em;
 	width: 70%;
 }
-#portfolio h2 {
-	text-align: center;
+#portfolio h2 {	
 	margin-bottom: 1em;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+
+}
+#portfolio h2 button {
+	align-items: center;
+    justify-content: center;
 }
 
 .gallery {
@@ -175,6 +182,7 @@ li:hover , a:hover{
 #delete-gallery{
 	color: #D65353;
 	margin-top: 23px;
+	pointer-events: none;
 }
 input[type="submit"]{
 	font-family: 'Syne';
@@ -331,6 +339,9 @@ a {
 	height: 12vh;
 	object-fit: cover;
 }
+.icon{
+	object-fit: none !important;
+}
 .bouton-ajout{
 	font-family: 'Syne';
 	width: 35%;
@@ -350,7 +361,7 @@ a {
 	line-height: 16px;
 	background-color: white;
 }
-.modale p{
+.ajouttitle{
 	font-size: 26px;
 }
 .containerImg {
@@ -412,6 +423,7 @@ a {
     justify-content: space-between;
 }
 .blocAjout{
+	position: relative;
 	width: 100%;
 	height: 40%;
 	background-color: #E8F1F6;
@@ -430,9 +442,19 @@ a {
 	font-size: 14px;
 	color: #306685 ;
 	font-weight: 500;
+	display: block;
 }
+#input-file{
+	display: none;
+}
+.blocAjout img {
+	display: block;
+	max-height: 100%;
+	position: absolute;		
+	object-fit: cover; 
+  }
 .conditions{
-	font-size: 12px;
+	font-size: 10px;
 	height: 20%;
 }
 .modal-wrapper-ajout{
@@ -467,11 +489,10 @@ a {
 	outline: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-.modale-box-ajout form select{
+#Catégorie{
 	width: 100%;
 	height: 25%;
-	border: none;
-	appearance: none;
+	border: none;	
 	font-family: 'Work Sans';
 	outline: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
@@ -499,3 +520,9 @@ a {
 	color: white;
 	font-size: 14px;
 }
+.valider-rempli {
+	background-color: #1D6154;;
+  }
+.hidden {
+	visibility: hidden;
+  }

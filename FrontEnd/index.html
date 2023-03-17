@@ -47,8 +47,15 @@
         <div class="modale-contenu">
           <p class="ajouttitle">Ajout photo</p>
           <div class="blocAjout">
+            <!-- <img src="/FrontEnd/assets/icons/img.png" alt="image" /> -->
             <i class="fa-regular fa-image fa-7x"></i>
             <button id="Ajout">+ Ajouter photo</button>
+            <input
+              type="file"
+              id="input-file"
+              accept="image/png, image/jpeg"
+              max="4000000"
+            />
             <p class="conditions">jpg, png : 4mo max</p>
           </div>
           <form action="submit">
@@ -57,9 +64,6 @@
             <label for="Catégorie">Catégorie</label>
             <select id="Catégorie" name="Catégorie">
               <option value="none"></option>
-              <option value="objet">Objets</option>
-              <option value="appartements">Appartements</option>
-              <option value="hotel-restaurant">Hôtels & Restaurants</option>
             </select>
           </form>
         </div>
