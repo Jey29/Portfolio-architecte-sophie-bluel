@@ -54,14 +54,17 @@ function genererModal(projets) {
     editImg.innerText = "éditer";
 
     //Ajout des icones et de leurs fonds
+
     const containerIconTrash = document.createElement("div");
     containerIconTrash.classList.add("containerIconTrash");
     containerIconTrash.setAttribute("data-id", article.id);
     const trashIcon = document.createElement("img");
     trashIcon.classList.add("icon");
     trashIcon.src = "/FrontEnd/assets/icons/poubelle.png";
+
     const containerIconCross = document.createElement("div");
     containerIconCross.classList.add("containerIconCross");
+    containerIconCross.classList.add("hide");
     const crossIcon = document.createElement("img");
     crossIcon.classList.add("icon");
     crossIcon.src = "/FrontEnd/assets/icons/croix.png";
@@ -73,6 +76,25 @@ function genererModal(projets) {
     contenairImg.append(imgModale);
     figureModale.append(editImg);
 
+    // Récupération de l'élément containerIconCross pour chaque figure modale
+    const containerIconCrossList = figureModale.querySelectorAll(
+      ".containerIconCross"
+    );
+
+    // Ajout d'un écouteur d'événement pour chaque figure modale
+    figureModale.addEventListener("mouseenter", () => {
+      // Affichage de containerIconCross
+      containerIconCrossList.forEach((containerIconCross) => {
+        containerIconCross.classList.remove("hide");
+      });
+    });
+
+    figureModale.addEventListener("mouseleave", () => {
+      // Masquage de containerIconCross
+      containerIconCrossList.forEach((containerIconCross) => {
+        containerIconCross.classList.add("hide");
+      });
+    });
     // On rattache la balise figureModale à la sectionModal
     sectionModal.appendChild(figureModale);
 
@@ -99,7 +121,6 @@ function genererModal(projets) {
             const figureASupprimerGallery = document.querySelector(
               `.gallery figure[id="${id}"]`
             );
-            console.log(document.querySelector(`.gallery`));
             figureASupprimerGallery.remove();
           }
         })
@@ -168,13 +189,50 @@ if (token) {
     });
 }
 
-////////////////////LOGIN faire apparaitre les éléments///////////////
+////////////////////LOGIN faire apparaitre/masquer les éléments///////////////
 function showAdminModeElements() {
   const adminModeElements = document.querySelectorAll("#adminMode");
   adminModeElements.forEach((element) => {
     element.style.display = "flex";
   });
 }
+function hideAdminModeElements() {
+  const adminModeElements = document.querySelectorAll("#adminMode");
+  adminModeElements.forEach((element) => {
+    element.style.display = "none";
+  });
+}
+
+/////////////////// LOGIN/LOGOUT ////////////////////////////////
+// variable globale définie pour stocker l'état de connexion de l'utilisateur
+let isLoggedIn = false;
+
+const loginLogoutLink = document.querySelector("#login-logout");
+
+// Vérification si l'utilisateur est déjà connecté
+if (token) {
+  isLoggedIn = true;
+  loginLogoutLink.textContent = "logout";
+  showAdminModeElements();
+}
+
+// Ajoutez un écouteur d'événement au lien "login/logout"
+loginLogoutLink.addEventListener("click", (event) => {
+  // Empêche la redirection par défaut
+  event.preventDefault();
+
+  // Si l'utilisateur est connecté, déconnectez-le
+  if (isLoggedIn) {
+    sessionStorage.removeItem("token");
+    isLoggedIn = false;
+    loginLogoutLink.textContent = "login";
+    hideAdminModeElements();
+    // divFilters.style.display = "block";
+  } else {
+    // Sinon, redirigez l'utilisateur vers la page de connexion
+    window.location.href = "login.html";
+  }
+});
 
 /////////////////////////Ajout Projet/////////////////////////////
 const boutonAjout = document.getElementById("Ajout");
@@ -218,11 +276,27 @@ fetch("http://localhost:5678/api/categories")
   .catch((error) => console.error("Error:", error));
 
 const btnValider = document.querySelector(".btn-valider");
+// // Récupérer les éléments à surveiller
+// const inputTitre = document.querySelector("[name=Titre]");
+// const inputCategorie = document.getElementById("Catégorie");
+// // Fonction de mise à jour de la couleur du bouton
+// function updateButtonColor() {
+//   if (inputTitre.value && inputCategorie.value && inputPhoto.value) {
+//     btnValider.style.backgroundColor = "#1D6154";
+//   } else {
+//     btnValider.style.backgroundColor = "";
+//   }
+// }
+
+// // Ajouter un écouteur d'événement "input" à chaque champ
+// inputTitre.addEventListener("input", updateButtonColor);
+// inputCategorie.addEventListener("input", updateButtonColor);
+// inputPhoto.addEventListener("input", updateButtonColor);
+
 btnValider.addEventListener("click", function () {
   const form = document.querySelector("form");
   const formData = new FormData();
-  const inputFile = document.getElementById("input-file");
-  const file = inputFile.files[0];
+  const file = inputPhoto.files[0];
   const blob = new Blob([file], { type: file.type }); // convertir l'image en binary
   formData.append("image", blob, file.name);
   formData.append("title", form.querySelector("[name=Titre]").value);
@@ -246,7 +320,6 @@ btnValider.addEventListener("click", function () {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("🚀 ~ file: index.js:249 ~ .then ~ data:", data);
         const projet = document.createElement("div");
         projet.classList.add("projet");
         projet.innerHTML = `
@@ -255,6 +328,8 @@ btnValider.addEventListener("click", function () {
         `;
         const gallery = document.querySelector(".gallery");
         gallery.appendChild(projet);
+
+        document.getElementById("modal2").style.display = "none";
       })
       .catch((error) => console.error("Erreur:", error));
   } else {

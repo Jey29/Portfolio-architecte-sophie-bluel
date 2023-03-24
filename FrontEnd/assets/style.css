@@ -234,7 +234,7 @@ a {
 	color: #1D6154;
 	margin-left: 10px;
 	text-align: center;
-	padding: 9px;
+	padding: 9px;	
   }
 .bouton-style:hover{
 	background-color: #1D6154;
@@ -316,6 +316,7 @@ a {
     flex-direction: column;
 	background-color: white;
 	width: 45%;
+	max-width: 720px;
 	height: 80%;
 	border-radius: 10px;
 	gap: 10px;	
@@ -463,6 +464,7 @@ a {
     flex-direction: column;
 	background-color: white;
 	width: 45%;
+	max-width: 720px;
 	height: 80%;
 	border-radius: 10px;
 }
@@ -520,9 +522,9 @@ a {
 	color: white;
 	font-size: 14px;
 }
-.valider-rempli {
-	background-color: #1D6154;;
-  }
 .hidden {
 	visibility: hidden;
   }
+.hide{
+	display: none;
+}
