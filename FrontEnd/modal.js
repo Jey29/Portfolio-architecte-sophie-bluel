@@ -1,3 +1,24 @@
+function rafraichirModal() {
+  const sectionModal = document.querySelector(".gallery-modal");
+
+  // Supprimer tous les éléments existants de la modal
+  sectionModal.innerHTML = "";
+
+  fetch("http://localhost:5678/api/works", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((projets) => {
+      genererModal(projets);
+    })
+    .catch((error) => {
+      console.error("Erreur lors de la récupération des projets :", error);
+    });
+}
+
 //ouverture de la modale
 const openModale = document.querySelector(".modifButton");
 
@@ -7,6 +28,7 @@ openModale.addEventListener("click", function (event) {
   modaleModeElements.forEach((element) => {
     element.style.display = "flex";
   });
+  rafraichirModal();
 });
 //fermeture de la modale par la croix
 const closeModale = document.querySelector(".fa-xmark");

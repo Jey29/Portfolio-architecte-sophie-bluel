@@ -121,7 +121,12 @@ function genererModal(projets) {
             const figureASupprimerGallery = document.querySelector(
               `.gallery figure[id="${id}"]`
             );
-            figureASupprimerGallery.remove();
+            if (figureASupprimerGallery) {
+              console.log("La figure de la galerie a été trouvée");
+              figureASupprimerGallery.remove();
+            } else {
+              console.log("La figure de la galerie n'a pas été trouvée");
+            }
           }
         })
         .catch((error) => {
@@ -227,7 +232,8 @@ loginLogoutLink.addEventListener("click", (event) => {
     isLoggedIn = false;
     loginLogoutLink.textContent = "login";
     hideAdminModeElements();
-    // divFilters.style.display = "block";
+    // Rafraîchir la page index.html
+    window.location.href = "index.html";
   } else {
     // Sinon, redirigez l'utilisateur vers la page de connexion
     window.location.href = "login.html";
@@ -320,12 +326,23 @@ btnValider.addEventListener("click", function () {
     })
       .then((response) => response.json())
       .then((data) => {
-        const projet = document.createElement("div");
-        projet.classList.add("projet");
-        projet.innerHTML = `
-          <img src="${data.imageUrl}" alt="${data.title}">
-          <figcaption>${data.title}</figcaption>
-        `;
+        const projet = document.createElement("figure");
+        const imageElement = document.createElement("img");
+        const titleElement = document.createElement("figcaption");
+
+        // Récupération de l'ID retourné par l'API
+        const newProjectId = data.id;
+
+        imageElement.src = data.imageUrl;
+        imageElement.crossOrigin = "anonymous";
+        titleElement.innerText = data.title;
+
+        projet.appendChild(imageElement);
+        projet.appendChild(titleElement);
+
+        // Ajout de l'ID retourné par l'API à l'élément du projet
+        projet.setAttribute("id", newProjectId);
+
         const gallery = document.querySelector(".gallery");
         gallery.appendChild(projet);
 
