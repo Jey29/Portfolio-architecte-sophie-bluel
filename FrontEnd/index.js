@@ -282,22 +282,22 @@ fetch("http://localhost:5678/api/categories")
   .catch((error) => console.error("Error:", error));
 
 const btnValider = document.querySelector(".btn-valider");
-// // Récupérer les éléments à surveiller
-// const inputTitre = document.querySelector("[name=Titre]");
-// const inputCategorie = document.getElementById("Catégorie");
-// // Fonction de mise à jour de la couleur du bouton
-// function updateButtonColor() {
-//   if (inputTitre.value && inputCategorie.value && inputPhoto.value) {
-//     btnValider.style.backgroundColor = "#1D6154";
-//   } else {
-//     btnValider.style.backgroundColor = "";
-//   }
-// }
+// Récupérer les éléments à surveiller
+const inputTitre = document.querySelector("[name=Titre]");
+const inputCategorie = document.getElementById("Catégorie");
+// Fonction de mise à jour de la couleur du bouton
+function updateButtonColor() {
+  if (inputTitre.value && inputCategorie.value && inputPhoto.value) {
+    btnValider.style.backgroundColor = "#1D6154";
+  } else {
+    btnValider.style.backgroundColor = "";
+  }
+}
 
-// // Ajouter un écouteur d'événement "input" à chaque champ
-// inputTitre.addEventListener("input", updateButtonColor);
-// inputCategorie.addEventListener("input", updateButtonColor);
-// inputPhoto.addEventListener("input", updateButtonColor);
+// Ajouter un écouteur d'événement "input" à chaque champ
+inputTitre.addEventListener("input", updateButtonColor);
+inputCategorie.addEventListener("input", updateButtonColor);
+inputPhoto.addEventListener("input", updateButtonColor);
 
 btnValider.addEventListener("click", function () {
   const form = document.querySelector("form");
